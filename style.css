@@ -447,56 +447,35 @@ img {
 /* ==========================================================================
    6. FOOTER
    ========================================================================== */
-.footer {
-  border-top: 1px solid var(--color-border);
-  padding: 3rem 0 2rem;
-}
-
-.footer-content {
+.footer-links {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 1.5rem;
 }
 
-.footer-logo {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-}
-
-.footer-tagline {
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  color: var(--color-gold);
-  text-transform: uppercase;
-}
-
-.footer-location {
-  font-size: 0.75rem;
-  color: var(--color-gray);
-  margin-top: 0.2rem;
-}
-
-.footer-links a {
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--color-offwhite);
   text-decoration: none;
   font-size: 0.8rem;
-  margin-left: 1.5rem;
   letter-spacing: 1px;
   transition: var(--transition-smooth);
 }
 
-.footer-links a:hover {
+.footer-social-link .footer-icon {
+  transition: var(--transition-smooth);
   color: var(--color-gold);
 }
 
-.footer-bottom {
-  padding-top: 1.5rem;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--color-gray);
+.footer-social-link:hover {
+  color: var(--color-gold-light);
+}
+
+.footer-social-link:hover .footer-icon {
+  transform: translateY(-2px);
+  color: var(--color-gold-light);
 }
 
 /* ==========================================================================
