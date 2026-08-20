@@ -447,101 +447,95 @@ img {
    6. FOOTER (ISOLADO, COMPACTO E ELEGANTE)
    ========================================================================== */
 .footer {
-  background-color: var(--color-black);
-  border-top: 1px solid var(--color-border);
-  padding: 3.5rem 0 2rem;
   width: 100%;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 18, 0.96) 0%, var(--color-black) 100%);
+  border-top: 1px solid rgba(200, 169, 107, 0.18);
+  padding: 3rem 0 2rem;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
-}
-
-.footer-top {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(200, 169, 107, 0.12);
-  gap: 1.5rem;
+  text-align: center;
+  gap: 1.35rem;
 }
 
-/* Marca / Lado Esquerdo */
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  text-align: left;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .footer-name {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
-  letter-spacing: 2px;
-  color: var(--color-offwhite);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
   font-weight: 400;
+  line-height: 1;
+  letter-spacing: 3px;
+  color: var(--color-offwhite);
 }
 
 .footer-role {
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--color-gold);
+  font-size: 0.72rem;
   font-weight: 400;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
 }
 
 .footer-place {
-  font-size: 0.8rem;
-  color: var(--color-gray);
+  margin-top: 0.4rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(245, 241, 232, 0.78);
 }
 
-/* Social / Lado Direito */
-.footer-social {
+.footer-links {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.footer-social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.footer-link {
+  min-width: 112px;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(200, 169, 107, 0.22);
   color: var(--color-offwhite);
+  background-color: rgba(255, 255, 255, 0.02);
   text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  padding: 0.5rem 0.85rem;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-dark);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  line-height: 1;
+  text-transform: uppercase;
   transition: var(--transition-smooth);
 }
 
-.footer-social-icon {
-  color: var(--color-gold);
-  transition: var(--transition-smooth);
-}
-
-.footer-social-link:hover {
-  border-color: var(--color-gold);
+.footer-link:hover,
+.footer-link:focus-visible {
+  border-color: rgba(227, 201, 138, 0.65);
   color: var(--color-gold-light);
   transform: translateY(-2px);
+  outline: none;
 }
 
-.footer-social-link:hover .footer-social-icon {
-  color: var(--color-gold-light);
-}
-
-/* Copyright Central */
-.footer-bottom {
-  padding-top: 1.5rem;
-  text-align: center;
+.footer-divider {
+  width: min(100%, 420px);
+  height: 1px;
+  margin-top: 0.25rem;
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 107, 0.5), transparent);
 }
 
 .footer-bottom p {
-  font-size: 0.75rem;
-  letter-spacing: 1px;
-  color: var(--color-gray);
+  font-size: 0.72rem;
+  letter-spacing: 0.8px;
+  color: rgba(168, 162, 154, 0.86);
 }
 
 /* ==========================================================================
@@ -724,22 +718,21 @@ img {
     width: 100%;
   }
 
-  /* Ajuste Responsivo do Footer no Celular */
-  .footer-top {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    gap: 1.75rem;
+  .footer {
+    padding: 2.6rem 0 1.8rem;
   }
 
-  .footer-brand {
-    text-align: center;
-    align-items: center;
+  .footer-container {
+    gap: 1.2rem;
   }
 
-  .footer-social {
+  .footer-links {
     width: 100%;
-    justify-content: center;
-    gap: 0.8rem;
+    gap: 0.7rem;
+  }
+
+  .footer-link {
+    flex: 1 1 130px;
+    max-width: 180px;
   }
 }
