@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Configuração base do WhatsApp da Fabi
+  // Configuração Oficial do WhatsApp de Fabi Neves
   const WHATSAPP_NUMBER = '551194272631';
 
-  // 1. Dados dos Serviços
+  // 1. Procedimentos Oferecidos
   const servicesData = [
     {
       id: '01',
       name: 'Fio a Fio',
       shortDesc: 'Efeito natural e delicado, realçando os cílios um a um.',
-      desc: 'Técnica clássica onde uma extensão é colada individualmente em cada fio natural. Proporciona alongamento, curvatura e um acabamento discreto e elegante.',
+      desc: 'Técnica clássica onde uma extensão é colada individualmente em cada fio natural. Proporciona alongamento, curvatura e acabamento discreto e elegante.',
       duration: '2h00',
       image: 'https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=800&q=80'
     },
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: '02',
       name: 'Volume Brasileiro',
       shortDesc: 'Fios em formato Y para volume moderado e marcante.',
-      desc: 'Utiliza fios com formato específico (Y) que proporcionam densidade sem pesar a estrutura natural, garantindo um olhar preenchido e sofisticado.',
+      desc: 'Utiliza fios em formato de Y que proporcionam densidade sem pesar a estrutura natural, garantindo um olhar preenchido e sofisticado.',
       duration: '2h15',
       image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80'
     },
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: '03',
       name: 'Volume Egípcio',
       shortDesc: 'Fios em formato W que oferecem textura e acabamento único.',
-      desc: 'Combina leveza com volume diferenciado através de fios em formato de W, entregando textura expressiva e harmonia ao desenho dos olhos.',
+      desc: 'Combina leveza com volume diferenciado através de fios em formato W, entregando textura expressiva e harmonia ao desenho dos olhos.',
       duration: '2h30',
       image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80'
     },
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // 2. Renderizar lista de serviços
+  // 2. Renderizar lista de procedimentos
   const servicesContainer = document.getElementById('servicesList');
 
   if (servicesContainer) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
-  // 3. Modal de Detalhes dos Serviços
+  // 3. Modal de Serviços com WhatsApp dinâmico
   const serviceModal = document.getElementById('serviceModal');
   const modalBackdrop = document.getElementById('modalBackdrop');
   const modalClose = document.getElementById('modalClose');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalImg.src = service.image;
     modalImg.alt = service.name;
 
-    // Gerador de mensagem dinâmica para WhatsApp via encodeURIComponent
+    // Mensagem com encodeURIComponent
     const message = `Olá, Fabi! Gostaria de agendar o procedimento ${service.name}. Poderia me informar os horários disponíveis?`;
     modalCta.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // Event Listeners dos cards de serviços
   document.querySelectorAll('.service-item').forEach(item => {
     item.addEventListener('click', () => {
       const id = item.getAttribute('data-id');
@@ -118,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  modalClose.addEventListener('click', closeServiceModal);
-  modalBackdrop.addEventListener('click', closeServiceModal);
+  if (modalClose) modalClose.addEventListener('click', closeServiceModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeServiceModal);
 
   // 4. Lightbox da Galeria
   const lightbox = document.getElementById('lightbox');
@@ -130,27 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
       const fullImageUrl = item.getAttribute('data-image');
-      lightboxImg.src = fullImageUrl;
-      lightbox.classList.add('active');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (lightboxImg) lightboxImg.src = fullImageUrl;
+      if (lightbox) {
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
     });
   });
 
   function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    if (lightbox) {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
   }
 
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightboxBackdrop.addEventListener('click', closeLightbox);
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
 
-  // Fechamento com tecla Escape para Modais
+  // Fechamento de modais via Tecla ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (serviceModal.classList.contains('active')) closeServiceModal();
-      if (lightbox.classList.contains('active')) closeLightbox();
+      if (serviceModal && serviceModal.classList.contains('active')) closeServiceModal();
+      if (lightbox && lightbox.classList.contains('active')) closeLightbox();
     }
   });
 
@@ -158,19 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
 
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('open');
-  });
-
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('open');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
     });
-  });
 
-  // 6. Ano atual no Footer
-  const yearSpan = document.getElementById('currentYear');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+      });
+    });
   }
 });

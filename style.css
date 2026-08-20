@@ -1,29 +1,47 @@
 /* ==========================================================================
-   VARIÁVEIS & RESET
-   ========================================================================== */
-/* ==========================================================================
-   NOVA PALETA PREMIUM (Velvet Noir & Champagne Dourado)
+   PALETA OFICIAL & VARIÁVEIS
    ========================================================================== */
 :root {
-  /* Tons de Fundo (Mais profundos e aveludados) */
-  --color-black: #0a0a0b;        /* Preto aveludado profundo */
-  --color-dark: #121214;         /* Grafite luxo para blocos e cards */
-  --color-dark-surface: #18181c; /* Superfície de destaque */
-
-  /* Tons de Dourado / Champagne (Mais luminosos e nobres) */
-  --color-gold: #d4af65;         /* Dourado champagne principal */
-  --color-gold-light: #ebd6a9;   /* Champagne suave/iluminado */
-  --color-gold-glow: rgba(212, 175, 101, 0.15); /* Brilho sutil */
-
-  /* Tipografia & Bordas */
-  --color-offwhite: #f5f4f0;     /* Branco seda para títulos e textos */
-  --color-gray: #9c9a95;         /* Cinza mineral para descrições */
-  --color-border: rgba(212, 175, 101, 0.22); /* Linhas douradas finas */
+  --color-black: #080808;
+  --color-dark: #121212;
+  --color-gold: #C8A96B;
+  --color-gold-light: #E3C98A;
+  --color-offwhite: #F5F1E8;
+  --color-gray: #A8A29A;
+  --color-border: rgba(200, 169, 107, 0.2);
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
   --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   --max-width: 1120px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-black);
+  color: var(--color-offwhite);
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 /* ==========================================================================
@@ -112,7 +130,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: rgba(13, 13, 13, 0.95);
+  background-color: rgba(8, 8, 8, 0.95);
   backdrop-filter: blur(8px);
   z-index: 100;
   border-bottom: 1px solid var(--color-border);
@@ -286,7 +304,7 @@
 
 .service-item:hover {
   padding-left: 0.5rem;
-  background-color: rgba(197, 168, 128, 0.02);
+  background-color: rgba(200, 169, 107, 0.02);
 }
 
 .service-num {
@@ -356,7 +374,7 @@
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: rgba(8, 8, 8, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -426,40 +444,46 @@
 }
 
 /* ==========================================================================
-   6. FOOTER (Design Limpo, Alinhado e Sofisticado)
+   6. FOOTER (ISOLADO, COMPACTO E ELEGANTE)
    ========================================================================== */
 .footer {
   background-color: var(--color-black);
   border-top: 1px solid var(--color-border);
-  padding: 4rem 0 2rem;
-  margin-top: 2rem;
+  padding: 3.5rem 0 2rem;
+  width: 100%;
 }
 
-.footer-wrapper {
+.footer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(212, 175, 101, 0.12);
-  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(200, 169, 107, 0.12);
+  gap: 1.5rem;
 }
 
 /* Marca / Lado Esquerdo */
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
+  text-align: left;
 }
 
-.footer-logo {
+.footer-name {
   font-family: var(--font-serif);
   font-size: 1.35rem;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: var(--color-offwhite);
   font-weight: 400;
 }
 
-.footer-tagline {
+.footer-role {
   font-size: 0.75rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -467,83 +491,171 @@
   font-weight: 400;
 }
 
-.footer-location {
+.footer-place {
   font-size: 0.8rem;
   color: var(--color-gray);
-  margin-top: 0.2rem;
 }
 
-/* Redes / Lado Direito */
-.footer-social-group {
+/* Social / Lado Direito */
+.footer-social {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.2rem;
 }
 
-.footer-social-card {
+.footer-social-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.1rem;
-  background-color: var(--color-dark);
-  border: 1px solid var(--color-border);
+  gap: 0.5rem;
   color: var(--color-offwhite);
   text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-dark);
   transition: var(--transition-smooth);
 }
 
-.footer-social-card .footer-icon {
+.footer-social-icon {
   color: var(--color-gold);
   transition: var(--transition-smooth);
 }
 
-.footer-social-card:hover {
-  background-color: var(--color-dark-surface);
+.footer-social-link:hover {
   border-color: var(--color-gold);
   color: var(--color-gold-light);
   transform: translateY(-2px);
 }
 
-.footer-social-card:hover .footer-icon {
-  transform: scale(1.1);
+.footer-social-link:hover .footer-social-icon {
   color: var(--color-gold-light);
 }
 
 /* Copyright Central */
 .footer-bottom {
-  padding-top: 1.75rem;
+  padding-top: 1.5rem;
   text-align: center;
+}
+
+.footer-bottom p {
   font-size: 0.75rem;
   letter-spacing: 1px;
   color: var(--color-gray);
 }
 
-/* Ajuste Responsivo para Telas Menores */
-@media (max-width: 768px) {
-  .footer-wrapper {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    gap: 2rem;
-  }
+/* ==========================================================================
+   MODAL & LIGHTBOX
+   ========================================================================== */
+.modal, .lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
-  .footer-brand {
-    align-items: center;
-  }
+.modal.active, .lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-  .footer-social-group {
-    flex-direction: column;
-    width: 100%;
-    max-width: 280px;
-  }
+.modal-backdrop, .lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+}
 
-  .footer-social-card {
-    width: 100%;
-    justify-content: center;
-  }
+.modal-window {
+  position: relative;
+  width: 90%;
+  max-width: 680px;
+  background-color: var(--color-dark);
+  border: 1px solid var(--color-border);
+  z-index: 1001;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close, .lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-offwhite);
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+}
+
+.modal-close:hover, .lightbox-close:hover {
+  color: var(--color-gold);
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.modal-img {
+  width: 100%;
+  height: 240px;
+}
+
+.modal-info {
+  padding: 2rem;
+}
+
+.modal-tag {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  margin: 0.2rem 0 1rem;
+}
+
+.modal-desc {
+  color: #bfbdb8;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.modal-duration {
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-duration strong {
+  color: var(--color-gold-light);
+}
+
+.lightbox-window {
+  position: relative;
+  max-width: 85%;
+  max-height: 85%;
+  z-index: 1001;
+}
+
+.lightbox-window img {
+  max-height: 80vh;
+  border: 1px solid var(--color-border);
 }
 
 /* ==========================================================================
@@ -612,13 +724,22 @@
     width: 100%;
   }
 
-  .footer-content {
+  /* Ajuste Responsivo do Footer no Celular */
+  .footer-top {
     flex-direction: column;
-    gap: 1.5rem;
     text-align: center;
+    align-items: center;
+    gap: 1.75rem;
   }
 
-  .footer-links a {
-    margin: 0 0.75rem;
+  .footer-brand {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-social {
+    width: 100%;
+    justify-content: center;
+    gap: 0.8rem;
   }
 }
