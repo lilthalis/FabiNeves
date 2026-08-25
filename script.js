@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initializeSite = () => {
   // Configuração Oficial do WhatsApp de Fabi Neves
   const WHATSAPP_NUMBER = '551194272631';
 
@@ -172,4 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeSite);
+} else {
+  initializeSite();
+}
