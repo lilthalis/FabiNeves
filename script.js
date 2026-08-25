@@ -1,3 +1,5 @@
+const initializeSite = () => {
+  // Configuração Oficial do WhatsApp de Fabi Neves
 // ==========================================================================
   // SERVIÇOS (CATÁLOGO EDITORIAL COM ACORDEÃO E WHATSAPP AUTOMÁTICO)
   // ==========================================================================
@@ -225,4 +227,10 @@
       });
     });
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeSite);
+} else {
+  initializeSite();
+}
