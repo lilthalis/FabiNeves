@@ -86,42 +86,44 @@ const initializeSite = () => {
       `;
     }).join('');
 
-    // Controle de abertura exclusiva (apenas 1 item aberto por vez)
-    const serviceItems = document.querySelectorAll('.service-item');
+    // ==========================================================================
+  // INTERATIVIDADE DO ACCORDION DOS SERVIÇOS (ABERTURA EXCLUSIVA)
+  // ==========================================================================
+  const serviceItems = document.querySelectorAll('.service-item');
 
-    serviceItems.forEach(item => {
-      const header = item.querySelector('.service-header');
+  serviceItems.forEach(item => {
+    const header = item.querySelector('.service-header');
 
-      const toggleItem = () => {
-        const isOpen = item.classList.contains('active');
+    const toggleService = () => {
+      const isOpen = item.classList.contains('active');
 
-        // Fecha todos os outros
-        serviceItems.forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('active');
-            otherItem.querySelector('.service-header').setAttribute('aria-expanded', 'false');
-          }
-        });
-
-        // Alterna o atual
-        if (isOpen) {
-          item.classList.remove('active');
-          header.setAttribute('aria-expanded', 'false');
-        } else {
-          item.classList.add('active');
-          header.setAttribute('aria-expanded', 'true');
-        }
-      };
-
-      header.addEventListener('click', toggleItem);
-      header.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleItem();
+      // Fecha todos os outros procedimentos abertos
+      serviceItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherHeader = otherItem.querySelector('.service-header');
+          if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Alterna o procedimento clicado
+      if (isOpen) {
+        item.classList.remove('active');
+        header.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('active');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    header.addEventListener('click', toggleService);
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleService();
+      }
     });
-  }
+  });
   
   // 3. Modal de Serviços com WhatsApp dinâmico
   const serviceModal = document.getElementById('serviceModal');

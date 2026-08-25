@@ -285,7 +285,7 @@ img {
 }
 
 /* ==========================================================================
-   3. SERVIÇOS (LISTAGEM ESTÁVEL, DIRETA E EDITORIAL)
+   3. SERVIÇOS (CATÁLOGO ACCORDION EDITORIAL CORRIGIDO)
    ========================================================================== */
 .services-list {
   margin-top: 3rem;
@@ -294,30 +294,44 @@ img {
 }
 
 .service-item {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  align-items: center;
-  padding: 1.6rem 0.5rem;
+  display: block;
   border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-smooth);
+  width: 100%;
+}
+
+.service-item.active {
+  background-color: rgba(200, 169, 107, 0.03);
+}
+
+/* Linha Principal (Fechada) */
+.service-header {
+  display: grid;
+  grid-template-columns: 55px 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.6rem 0.5rem;
   cursor: pointer;
+  user-select: none;
   transition: var(--transition-smooth);
 }
 
-.service-item:hover {
-  background-color: rgba(200, 169, 107, 0.03);
-  padding-left: 0.8rem;
+.service-header:hover {
+  padding-left: 0.85rem;
 }
 
 .service-num {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--color-gold);
+  font-weight: 400;
 }
 
-.service-content {
+.service-title-group {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  min-width: 0;
 }
 
 .service-title {
@@ -326,47 +340,152 @@ img {
   font-weight: 400;
   color: var(--color-offwhite);
   line-height: 1.2;
+  margin: 0;
 }
 
 .service-short-desc {
-  color: var(--color-gray);
   font-size: 0.85rem;
+  color: var(--color-gray);
   line-height: 1.4;
+  margin: 0;
 }
 
-.service-btn {
+/* Botão de Alternância (+ para ×) */
+.service-toggle-btn {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-gold);
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  transition: var(--transition-smooth);
+  font-size: 1.35rem;
+  line-height: 1;
   cursor: pointer;
+  transition: var(--transition-smooth);
 }
 
-.service-item:hover .service-btn {
+.service-item:hover .service-toggle-btn {
+  border-color: var(--color-gold);
+}
+
+.service-item.active .service-toggle-btn {
+  transform: rotate(45deg);
   background-color: var(--color-gold);
   color: var(--color-black);
   border-color: var(--color-gold);
 }
 
-@media (max-width: 650px) {
-  .service-item {
-    grid-template-columns: 45px 1fr auto;
-    padding: 1.3rem 0.25rem;
+/* Gaveta do Accordion (Aberta) */
+.service-drawer {
+  display: none;
+  padding: 0 0.5rem 2rem;
+  animation: fadeInDrawer 0.35s ease;
+}
+
+.service-item.active .service-drawer {
+  display: block;
+}
+
+@keyframes fadeInDrawer {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-drawer-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: rgba(18, 18, 18, 0.7);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.service-drawer-img-box {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(200, 169, 107, 0.25);
+  background-color: #080808;
+}
+
+.service-drawer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-drawer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-drawer-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-offwhite);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.service-drawer-desc {
+  font-size: 0.9rem;
+  color: #bfbdb8;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.service-drawer-duration {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-gold-light);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.service-drawer-info .btn-primary {
+  align-self: flex-start;
+  padding: 0.75rem 1.4rem;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .service-header {
+    grid-template-columns: 40px 1fr auto;
+    gap: 0.75rem;
+    padding: 1.25rem 0.25rem;
   }
 
   .service-title {
     font-size: 1.2rem;
   }
 
-  .service-short-desc {
-    font-size: 0.8rem;
+  .service-drawer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.2rem;
+  }
+
+  .service-drawer-img-box {
+    height: 190px;
+  }
+
+  .service-drawer-info .btn-primary {
+    width: 100%;
+    text-align: center;
   }
 }
 
