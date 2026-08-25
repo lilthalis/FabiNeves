@@ -285,7 +285,7 @@ img {
 }
 
 /* ==========================================================================
-   3. SERVIÇOS
+   3. SERVIÇOS (CATÁLOGO EDITORIAL INTERATIVO)
    ========================================================================== */
 .services-list {
   margin-top: 3rem;
@@ -293,54 +293,188 @@ img {
 }
 
 .service-item {
-  display: grid;
-  grid-template-columns: 80px 1.5fr 1fr auto;
-  align-items: center;
-  padding: 1.75rem 0;
   border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-smooth);
+}
+
+.service-item.active {
+  background-color: rgba(200, 169, 107, 0.03);
+}
+
+/* Cabeçalho da Linha do Serviço */
+.service-header {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  padding: 1.6rem 0.5rem;
   cursor: pointer;
+  user-select: none;
   transition: var(--transition-smooth);
 }
 
-.service-item:hover {
-  padding-left: 0.5rem;
-  background-color: rgba(200, 169, 107, 0.02);
+.service-header:hover {
+  padding-left: 0.8rem;
 }
 
 .service-num {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--color-gold);
+  font-weight: 400;
+}
+
+.service-title-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .service-title {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 400;
   color: var(--color-offwhite);
+  line-height: 1.2;
 }
 
-.service-short-desc {
-  color: var(--color-gray);
-  font-size: 0.85rem;
-}
-
-.service-btn {
+/* Botão de Alternância + para × */
+.service-toggle-btn {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-gold);
-  width: 36px;
-  height: 36px;
-  display: flex;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  transition: var(--transition-smooth);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
 }
 
-.service-item:hover .service-btn {
+.service-item:hover .service-toggle-btn {
+  border-color: var(--color-gold);
+}
+
+.service-item.active .service-toggle-btn {
+  transform: rotate(45deg);
   background-color: var(--color-gold);
   color: var(--color-black);
+  border-color: var(--color-gold);
+}
+
+/* Painel Expansível (Accordion Animação Suave ~350ms) */
+.service-details-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+}
+
+.service-item.active .service-details-drawer {
+  grid-template-rows: 1fr;
+}
+
+.service-details-content {
+  min-height: 0;
+}
+
+.service-card-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem 1rem 2rem;
+}
+
+/* Imagem Editorial */
+.service-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-dark);
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.service-item.active .service-img {
+  transform: scale(1.03);
+}
+
+/* Informações do Procedimento */
+.service-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-info-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-offwhite);
+  margin-bottom: 0.4rem;
+}
+
+.service-info-desc {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.service-duration {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--color-gold-light);
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.service-info .btn-primary {
+  align-self: flex-start;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+}
+
+/* Responsividade Mobile da Seção */
+@media (max-width: 768px) {
+  .service-header {
+    grid-template-columns: 50px 1fr auto;
+    padding: 1.3rem 0.25rem;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+  }
+
+  .service-card-body {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 0.5rem 1.75rem;
+  }
+
+  .service-img-wrapper {
+    height: 200px;
+  }
+
+  .service-info .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ==========================================================================
