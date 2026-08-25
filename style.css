@@ -401,9 +401,10 @@ img {
 }
 
 .service-drawer-grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 2.5rem;
+  grid-template-columns: minmax(320px, 1.25fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
   background-color: rgba(18, 18, 18, 0.7);
   border: 1px solid var(--color-border);
@@ -411,9 +412,33 @@ img {
   border-radius: 4px;
 }
 
+.service-drawer-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: rgba(18, 18, 18, 0.85);
+  color: var(--color-offwhite);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: var(--transition-smooth);
+}
+
+.service-drawer-close:hover,
+.service-drawer-close:focus-visible {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
 .service-drawer-img-box {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 4 / 3;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid rgba(200, 169, 107, 0.25);
@@ -474,13 +499,13 @@ img {
   }
 
   .service-drawer-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
-    padding: 1.2rem;
+    padding: 3.5rem 1.2rem 1.2rem;
   }
 
   .service-drawer-img-box {
-    height: 190px;
+    aspect-ratio: 4 / 3;
   }
 
   .service-drawer-info .btn-primary {
